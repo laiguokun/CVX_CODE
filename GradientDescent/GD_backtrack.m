@@ -10,8 +10,8 @@ y = [];
 y = [y,gap];
 cnt = 0;
 while (gap > 1e-6 && cnt < 20)
-    deltax = -fg(x, gamma);
-    x = backtrack_line_search(x, deltax, gamma, 0.3, 0.5);
+    df = -fg(x, gamma);
+    x = backtrack_line_search(x, df, gamma, 0.3, 0.5);
     gap = f(x,gamma); 
     disp(gap);
     y = [y,gap];
@@ -27,11 +27,11 @@ function g = fg(x,gamma)
     g = [x(1), gamma * x(2)];
 end
 
-function x = backtrack_line_search(x0, deltax, gamma, alpha, beta)
+function x = backtrack_line_search(x0, df, gamma, alpha, beta)
     t = 1;
-    while (f(x0 + t * deltax, gamma) > f(x0, gamma) + alpha * t * (- deltax * deltax'))
+    while (f(x0 + t * df, gamma) > f(x0, gamma) + alpha * t * (- df * df'))%% dx = -df
         t = t * beta;
     end;
-    x = x0 + t * deltax;
+    x = x0 + t * df;
 end
 
