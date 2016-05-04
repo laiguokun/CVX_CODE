@@ -22,7 +22,7 @@ while (cnt < 20)
     disp(gap);
     cnt = cnt + 1;
 end
-
+disp(x);
 end
 
 function value = f(x)

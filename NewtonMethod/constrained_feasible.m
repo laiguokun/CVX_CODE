@@ -23,7 +23,7 @@ while (cnt < 10)
     P = [ddf, A'; A, zeros(m,m)];
     tmp = P ^ -1 * [-df'; zeros(m,1)];
     dx = tmp(1:n)';
-    lambda = dx * ddf * dx';
+    lambda = (dx * ddf * dx')^0.5;
     if (lambda < 1e-6)
         break;
     end;
